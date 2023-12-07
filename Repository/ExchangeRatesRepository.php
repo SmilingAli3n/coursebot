@@ -9,7 +9,7 @@ class ExchangeRatesRepository
     public static function getAllCourses(int $chatId): array {
         $db = MysqlConnector::getInstance();
 	    $PDO = $db->getConnection();
-        $baseCurrencyRate = 1.0; // если нет курса валюты на данный момент - считаем, что это тенге
+        $baseCurrencyRate = 1.0; // если нет курса валюты на данный момент - считаем, что это национальная валюта
         $stmt = $PDO->prepare("SELECT rates.rate as rate, rates.quant AS quant FROM users INNER JOIN exchange_rates AS rates ON base_currency = currency_id WHERE telegram_user_id = ? AND rates.date = ?");
         $stmt->bindValue(1, $chatId, \PDO::PARAM_INT);
         $stmt->bindValue(2, date("Y-m-d", time()), \PDO::PARAM_STR);
