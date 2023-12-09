@@ -17,7 +17,7 @@ class ExchangeRatesRepository
         $res = $stmt->fetchAll();
         if (count($res) !== 0) {
             $quant = $res[0]["quant"] === 0 ? 1 : $res[0]["quant"];
-            $baseCurrencyRate = $res[0]["rate"] / $res[0]["quant"];
+            $baseCurrencyRate = $res[0]["rate"] / $quant;
         }
         $stmt = $PDO->prepare("SELECT rates.rate AS rate, rates.quant AS quant, rates.date AS date, currs.full_name as currency FROM exchange_rates AS rates LEFT JOIN currencies as currs ON rates.currency_id=currs.id WHERE date = ?");
 	    $date = date("Y-m-d", time());
