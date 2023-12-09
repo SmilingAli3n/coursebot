@@ -31,7 +31,7 @@ class ExchangeRatesRepository
             $res = $stmt->fetchAll();
         }
         foreach ($res as $key => $value) {
-            $res[$key]["rate"] = $res[$key]["rate"] / $baseCurrencyRate;
+            $res[$key]["rate"] /= $baseCurrencyRate;
         }
         return $res;
     }
