@@ -20,7 +20,7 @@ if (isset($input["callback_query"]))
 	$callbackQuery = $input["callback_query"];
 	$data = $callbackQuery["data"];
 }
-//exit();
+
 $bot = new CourseBot(getenv("TG_COURSEBOTKZ_TOKEN"));
 if (!empty($input["message"]["text"]))
 {
