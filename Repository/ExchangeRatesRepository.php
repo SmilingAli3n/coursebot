@@ -22,9 +22,9 @@ class ExchangeRatesRepository
         $stmt = $PDO->prepare("SELECT rates.rate AS rate, rates.quant AS quant, rates.date AS date, currs.full_name as currency FROM exchange_rates AS rates LEFT JOIN currencies as currs ON rates.currency_id=currs.id WHERE date = ?");
 	    $date = date("Y-m-d", time());
         $stmt->bindValue(1, $date, \PDO::PARAM_STR);
-	    $stmt->execute();
-	    $res = $stmt->fetchAll();
-	    if (count($res) === 0) {
+	$stmt->execute();
+	$res = $stmt->fetchAll();
+	if (count($res) === 0) {
             $date = date("Y-m-d", time() - 86400);
             $stmt->bindValue(1, $date, \PDO::PARAM_STR);
             $stmt->execute();
